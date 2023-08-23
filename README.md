@@ -1,2 +1,2 @@
 # learn_note
-some note for myself studt
+some note for myself study
