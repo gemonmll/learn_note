@@ -15,3 +15,4 @@
 > ![Alt text](image-4.png)
 > 提取点云中的边界
 > ![Alt text](image-5.png)
+> ![Alt text](image-6.png)
