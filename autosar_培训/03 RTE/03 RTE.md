@@ -55,4 +55,7 @@ rte 在swc和bsw 之间
 > ![alt text](image-21.png)
 > ![alt text](image-22.png)
 ### rte生成代码过程
+> contract phase 定义阶段
 > ![alt text](image-23.png)
+> 生成阶段
+> ![alt text](image-24.png)
