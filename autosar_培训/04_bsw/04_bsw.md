@@ -56,3 +56,9 @@
 > ![alt text](image-18.png)
 > 例子
 > ![alt text](image-19.png)
+>
+> 7 os 部分
+> ![alt text](image-20.png)
+>
+> 8 interfaces
+> ![alt text](image-21.png)
