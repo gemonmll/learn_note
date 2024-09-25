@@ -27,4 +27,32 @@
 > 说明
 > ![alt text](image-9.png)
 > 具体例子
+> send
 > ![alt text](image-10.png)
+> receive
+> ![alt text](image-11.png)
+> 
+> 2 mode management 模式管理
+> 状态管理 处理ecu基本状态 sleep 等等
+> 总线网络管理 network management 保持唤醒
+> bsw状态管理 rule based
+> ![alt text](image-12.png)
+>
+> 3 watchdog 看门狗
+> ![alt text](image-13.png)
+>
+> 4 存储服务
+> ![alt text](image-14.png)
+> 例子
+> ![alt text](image-15.png)
+>
+> 5 诊断服务
+> dcm(诊断协议)  dem(dtc处理 错误内存) fim
+> ![alt text](image-16.png)
+> 例子
+> ![alt text](image-17.png)
+>
+> 6 hardware io 与传感器交互
+> ![alt text](image-18.png)
+> 例子
+> ![alt text](image-19.png)
