@@ -55,3 +55,19 @@
 > vector 开发工具链
 > vVIRTUALtarget 仿真
 > ![alt text](image-17.png)
+> preevision system design
+> 软件架构设计
+> ![alt text](image-18.png)
+> ![alt text](image-19.png)
+> vtt canoe 仿真测试
+> ![alt text](image-20.png)
+> davinci developer
+> swc设计
+> ![alt text](image-21.png)
+> davinci configurator pro
+> ![alt text](image-22.png)
+> ![alt text](image-23.png)
+> 附录
+> ![alt text](image-24.png)
+> 多核
+> ![alt text](image-25.png)
