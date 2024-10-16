@@ -71,5 +71,49 @@
 > ![alt text](image-34.png)
 > 变长数据序列化
 > ![alt text](image-35.png)
-### > someip 报文示例
+> ###  someip 报文示例
 > ![alt text](image-36.png)
+### 4 someip SD
+> 服务寻址 事件订阅 两种功能
+> ![alt text](image-37.png)
+> ### someip sd 报文格式
+> payload字段 messageid 固定
+> ![alt text](image-38.png)
+> flags字段
+> ![alt text](image-39.png)
+> entry arrays(事件寻址报文 事件订阅报文)
+> ![alt text](image-40.png)
+> service entry 字段
+> ![alt text](image-41.png)
+> 也可以携带一些额外信息
+> ![alt text](image-42.png)
+> ### 示例
+> ![alt text](image-44.png)
+> service ID 和 instance ID
+> 实例是一个服务的具体实现
+> ![alt text](image-45.png)
+> ![alt text](image-46.png)
+> ### 事件组 entry eventgroup entry
+> ![alt text](image-47.png)
+> ![alt text](image-48.png)
+> option 内容
+> ![alt text](image-49.png)
+> ![alt text](image-50.png)
+> endpoint option server端端口号 联系方式
+> ![alt text](image-51.png)
+> sd endpoint option
+> ![alt text](image-52.png)
+> configuration option
+> ![alt text](image-53.png)
+> load balancing option
+> ![alt text](image-54.png)
+> ### 示例
+> 发现 0x1001服务
+> 提供 ipv4 endpoint option
+> ![alt text](image-55.png)
+>
+> ### 5 SD启动时序
+> 服务端阶段
+> ![alt text](image-57.png)
+> 客户端行为
+> ![alt text](image-58.png)
