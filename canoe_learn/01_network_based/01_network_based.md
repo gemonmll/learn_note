@@ -38,3 +38,16 @@
 > 支持给switch segment 配置vlan 属性
 > 也可以配置以太网端口作为VN5000设备与上位机的连接端口
 > ![alt text](image-10.png)
+> 硬件设备配置
+> ![alt text](image-11.png)
+> 软件设备配置
+> ![alt text](image-12.png)
+> 使用实例 对switch和两个节点仿真
+> ![alt text](image-13.png)
+> port config
+> ![alt text](image-14.png)
+> pp 默认是measure port
+> 注意发送顺序
+> ![alt text](image-15.png)
+### Ethernet Packet Builder(未集成TCP IP) 、 Ethernet IG(集成TCPIP)
+> ![alt text](image-16.png)
