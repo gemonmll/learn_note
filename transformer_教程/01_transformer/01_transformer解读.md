@@ -56,3 +56,29 @@
 > 残差连接与归一化
 > layer normalize
 > ![alt text](image-22.png)
+### 08 transformer 整体架构梳理
+> decoder端
+> attention 计算不同
+> encoder提供k v decoder提供q
+> 多了mask机制 因为结果不能一口气都出来
+> ![alt text](image-23.png)
+> 最终输出结果
+> ![alt text](image-24.png)
+> 整体梳理
+> ![alt text](image-25.png)
+> ![alt text](image-26.png)
+### 09 BERT 模型训练方法
+> ![alt text](image-27.png)
+> BERT 就是transformer中的encoder部分
+> ![alt text](image-28.png)
+> 训练BERT方法
+> 1 随机mask方法
+> ![alt text](image-29.png)
+> 2 预测两个句子是否该连在一起
+> ![alt text](image-30.png)
+### 10 训练实例
+> 所有任务一起训练
+> ![alt text](image-31.png)
+> 使用BERT,单独两个向量 start 和 end
+> ![alt text](image-32.png)
+> ![alt text](image-33.png)
