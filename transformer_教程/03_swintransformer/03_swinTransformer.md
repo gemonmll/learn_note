@@ -43,3 +43,32 @@
 ### 7 分层计算方法 
 > 根据任务来选择合适的head 
 > ![alt text](image-17.png)
+
+### 8 模型分层解读
+> 图像数据与patch编码
+> 输入图片 4，3，224，224 batch为4
+> ![alt text](image-18.png)
+> patch embedding 4,3136,96 
+> 最开始有个4的卷积核 224/4 * 224/4 = 3136
+> 96个卷积核
+> ![alt text](image-19.png)
+> WMSA 4,8,7,8,7,96 共有64个窗口
+> ![alt text](image-20.png)
+> ![alt text](image-21.png)
+> ![alt text](image-22.png)
+> ![alt text](image-23.png)
+> attention 多头注意力机制
+> 3（qkv），256(4*64窗口)，3(3个多头)，49，32（每一头的向量个数 3*32=96）
+> ![alt text](image-24.png)
+> 单独的qkv 矩阵维度256，3，49，32 
+> ![alt text](image-25.png)
+> attention输出结果
+> 256 3 49 49
+> ![alt text](image-26.png)
+> softmax 新的窗口值
+> 256 49 96
+> ![alt text](image-27.png)
+> 下采样
+> ![alt text](image-28.png)
+> ![alt text](image-29.png)
+> ![alt text](image-30.png)
