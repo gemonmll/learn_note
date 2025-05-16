@@ -66,3 +66,15 @@
 > 代码架构（核心NVM 服务层）
 > ![alt text](image-31.png)
 > ![alt text](image-32.png)
+> service ID 的对应
+> ![alt text](image-33.png)
+> ![alt text](image-34.png)
+> 代码执行
+> ![alt text](image-35.png)
+> ![alt text](image-36.png)
+> 真正的写入也会有一个线程
+> ![alt text](image-37.png)
+> 很多type是autosar规定的，必须实现
+> ![alt text](image-38.png)
+> ![alt text](image-40.png)
+> ![alt text](image-39.png)
