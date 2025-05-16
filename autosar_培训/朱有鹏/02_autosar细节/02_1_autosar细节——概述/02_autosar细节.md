@@ -79,3 +79,7 @@
 > examples(os、RTE)
 > mem(memory EA FEE )
 > system(system service (os kernel\ ecum\iohdware schm mm wdgm  ))
+> #### ecu层级并不是一一对应的，mcal层级一一对应
+> ![alt text](image-29.png)
+> ![alt text](image-28.png)
+> 
