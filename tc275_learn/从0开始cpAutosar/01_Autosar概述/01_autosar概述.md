@@ -84,3 +84,23 @@
 > ![alt text](image-31.png)
 > ![alt text](image-32.png)
 > ![alt text](image-33.png)
+
+## 4 EcuC RTE App介绍
+>  ### ECUC介绍
+> 主要工作，初始化，对hardware的一些设置，pdur（最小系统中没有）
+> ![alt text](image-34.png)
+> ecuc  硬件配置 多核配置
+> ![alt text](image-35.png)
+> ### RTE
+> 中转站，对上链接swc，对下对接通信栈，存储栈，OS，CDD
+> ![alt text](image-36.png)
+> ### application 介绍
+> 各个模块间的调用关系图
+> ![alt text](image-41.png)
+> develop工具 （app components types）
+> ![alt text](image-38.png)
+> service components 相关的swc
+> data type 做了单位转化
+> ![alt text](image-39.png)
+> app port 和 service port
+> ![alt text](image-40.png)
