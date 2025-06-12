@@ -101,8 +101,53 @@
 > ![alt text](image-37.png)
 > ![alt text](image-38.png)
 > CANIF模块 是对can controller模式进行管理
+> ##### controller mode
 > 分为四个状态
 > ![alt text](image-39.png)
 > ![alt text](image-40.png)
 > 模式切换，切换后再传给上一层cansm
 > ![alt text](image-42.png)
+> ##### pdu mode
+> 通过函数canif_setpdumode()来设置pdu模式
+> 对于某个pdu接收.发送模式的切换
+> ![alt text](image-43.png)
+> ##### 数据传输过程
+> 发送条件，处于can_if_started controller模式下,pdu处于online的pdu模式下
+> 如果mailbox不处于free状态，则会返回busy
+> 发送过后，会触发confirmation的中断
+> ![alt text](image-44.png)
+> ##### davinci配置 api
+> 正常canid和pdu是一一对应的，即一个pdu有一个canid
+> 可以把tx pdu type设置成dynamic,然后调用canif_setdynamictxid来修改id
+> ![alt text](image-45.png)
+> 数据传输过程 传送buffer: fifo ,prio by canid
+> ![alt text](image-46.png)
+> tx-pdu truncation
+> 长度超出要求解决措施
+> ![alt text](image-47.png)
+> ##### 数据接收过程
+> 触发中断，从中断中将数据传递给上层
+> controller mode也要处于started，pdu mode也要online 状态
+> ![alt text](image-48.png)
+> 要是不勾选上的话，mode状态就不正常
+> ![alt text](image-49.png)
+> 通过CANid 找到pudID
+> ![alt text](image-50.png)
+> DLC check
+> ![alt text](image-51.png)
+> ##### davinci配置介绍 配置tx full can
+> 两个tx pdu 底层只有一个canFd hardware
+> ![alt text](image-52.png)
+> 配置两路的tx hardware object 
+> ![alt text](image-53.png)
+> 增加底层 can hardware object
+> ![alt text](image-54.png)
+> ![alt text](image-55.png)
+> 增加 canif buffer
+> ![alt text](image-56.png)
+> 增加 hth 引用
+> ![alt text](image-57.png)
+> 配置tx报文
+> ![alt text](image-58.png)
+> full can 配置正常
+> ![alt text](image-59.png)
