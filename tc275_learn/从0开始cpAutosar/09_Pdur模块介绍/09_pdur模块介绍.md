@@ -59,4 +59,17 @@
 > ![alt text](image-22.png)
 > **pdu中routing paths 可以看到路由关系**
 > ![alt text](image-23.png)
+> **pdur 代码介绍**
+> pdur_qal_remove 把最老的element从queue中移除
+> pdur_qal_get 获取数据
+> ![alt text](image-24.png)
+> 发送dest pdu发送,buffer处于idle状态才会进行发送
+> ![alt text](image-25.png)
+> 发送后的confirmation
+> ![alt text](image-26.png)
+> **pudr 问题分析**
+> 1、某段时间报文无法转发 buffer满了
+> ![alt text](image-27.png)
+> 2、报文件的间隔周期性变化，tp threshold参数设置问题
+> ![alt text](image-28.png)
 
