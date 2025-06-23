@@ -69,3 +69,64 @@
 > cansm和bswm间也有参数会开启关闭ipdu group
 > ![alt text](image-32.png)
 > ![alt text](image-33.png)
+> ### 3 comm
+> status有三个：no com \silent com\full com （与bswm相关）
+> 三个大状态下还有子状态 channel state
+> silentcom 用户不能直接请求
+> ![alt text](image-34.png)
+> 相关变量（comm_userreqfullcom comm_activecommode comm_comallowed comm_buscommodereq comm_bussmstate）
+> ![alt text](image-35.png)
+> **内部处理过程**
+> 内部处理过程
+> 计算出最高的commode
+> ![alt text](image-37.png)
+> ![alt text](image-36.png)
+> 真正模式切换的部分
+> ![alt text](image-38.png)
+> ![alt text](image-39.png)
+> **与其他模块交互**
+> 与swc的交互，通过rte连起来
+> ![alt text](image-40.png)
+> service port 服务接口
+> ![alt text](image-41.png)
+> 与bswm和cansm的交互
+> ![alt text](image-42.png)
+> ### 4 canSM
+> cansm状态机 （fullcom prefullcom prenocom ..）
+> ![alt text](image-43.png)
+> cansm 状态变量（cansm_channelvarrecordc）
+> ![alt text](image-44.png)
+> ![alt text](image-45.png)
+> ![alt text](image-46.png)
+> ![alt text](image-47.png)
+> cansm_universaltimer 用于保存一些时间参数
+> ![alt text](image-49.png)
+> ![alt text](image-48.png)
+> lastvalidbaudrate 
+> requestedcommode,对cansm请求的mode
+> indicatedcommode,上次cansm上报comm的mode
+> currentstate:非常重要，当前cansm的状态
+> modeindicationresponsible，表明哪个function对cansm进行状态处理，必须等这个函数处理完了或nobody才能下个函数
+> bswmindicatedstate和bswmnewstate,通知bswm新的状态
+> busoff flag，busoff发生的次数
+> **通讯控制相关处理流程**
+> mainfunction,universaltimer为0后再进行状态切换
+> ![alt text](image-50.png)
+> cansm_checkmodeindication
+> mode进行比对，上报给bswm
+> ![alt text](image-51.png)
+> 与其他模块的交互
+> ![alt text](image-52.png)
+> **演示 full com request流程**
+> ![alt text](image-53.png)
+> 断点调试 caninit函数 （no com 0x40）
+> ![alt text](image-54.png)
+> ![alt text](image-55.png)
+> mainfunction中处理的地方
+> ![alt text](image-56.png)
+> ![alt text](image-57.png)
+> 先屏蔽掉 fullcommution请求
+> ![alt text](image-58.png)
+> ![alt text](image-59.png)
+> 没有请求full communication请求，稳定nocom 状态
+> ![alt text](image-60.png)
