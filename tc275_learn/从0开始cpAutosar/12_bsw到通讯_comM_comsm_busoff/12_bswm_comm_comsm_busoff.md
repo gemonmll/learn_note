@@ -130,3 +130,15 @@
 > ![alt text](image-59.png)
 > 没有请求full communication请求，稳定nocom 状态
 > ![alt text](image-60.png)
+> ### 5 busoff recovery流程
+> cansm 重点
+> 快恢复 慢恢复
+> ![alt text](image-61.png)
+> 大致过程，发生busoff中断，此时cansm进入silent,不再向外发送报文，l1l2时间耗尽，开始向外发送报文，在ensured时间内没有发生busoff,说明恢复成功
+> busoff恢复流程
+> ![alt text](image-62.png)
+> ![alt text](image-63.png)
+> 相关feature
+> ![alt text](image-64.png)
+> ### 6 通讯控制整体介绍
+> ![alt text](image-65.png)
