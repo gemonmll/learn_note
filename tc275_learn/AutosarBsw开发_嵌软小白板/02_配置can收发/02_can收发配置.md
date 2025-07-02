@@ -20,7 +20,7 @@
 > **删除一条应用报文，新增一个can信号，删除一个can信号**
 > **需求如下**
 > ![alt text](image-14.png)
-> **修改db**c
+> **修改dbc**
 > 删除报文一般在msg中直接干掉
 > ![alt text](image-15.png)
 > 改变信号大小
@@ -64,3 +64,4 @@
 > ![alt text](image-36.png)
 > 编译中把app的文件删除掉
 > ![alt text](image-37.png)
+> ### 课时3 每条接收报文配置邮箱
