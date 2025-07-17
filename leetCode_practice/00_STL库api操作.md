@@ -130,6 +130,14 @@ std::set<std::vector<int>> unique_set(vec2D.begin(), vec2D.end());
 // 如果还想转换回 vector
 std::vector<std::vector<int>> deduped(unique_set.begin(), unique_set.end());
 ```
+#### 利用count方法判断元素是否存在
+```cpp
+std::set<int> s = {1, 2, 3};
+std::cout << s.count(2) << std::endl; // 输出 1
+std::cout << s.count(5) << std::endl; // 输出 0
+```
+返回值：如果 key 存在，返回 1；否则返回 0。
+原因：两者都不允许重复元素，所以 count 要么是 0，要么是 1
 
 ---
 
