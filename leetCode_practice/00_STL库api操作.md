@@ -34,6 +34,11 @@ int y = v.at(1);                 // 带边界检查
 bool empty = v.empty();          // 是否为空
 size_t n = v.size();             // 元素个数
 ```
+#### 初始化 指定大小并且提供初始值
+```cpp
+std::vector<int> v(10,0);//10个元素，每个都是5
+std::vector<int> v = {1,2,3,4,5};
+```
 
 ---
 
