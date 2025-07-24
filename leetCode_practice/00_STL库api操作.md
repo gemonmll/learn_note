@@ -39,7 +39,15 @@ size_t n = v.size();             // 元素个数
 std::vector<int> v(10,0);//10个元素，每个都是5
 std::vector<int> v = {1,2,3,4,5};
 ```
+#### 一些注意事项
+> 在 C++ 中，std::vector 提供了一个成员函数 end()，它返回一个指向容器末尾元素的迭代器。值得注意的是，end() 返回的迭代器并不指向最后一个元素，而是指向容器“末尾之后”的位置，也就是最后一个元素之后的位置。换句话说，它是容器中最后一个元素之后的位置的一个迭代器。
+> 如果你想通过索引来访问 std::vector 的最后一个元素，你可以使用 size() 成员函数来获取容器的大小，然后通过 size() - 1 来获取最后一个元素的索引。
+> std::vector 的 .begin() 函数用于获取指向第一个元素的迭代器。 ‌在 C++ 标准模板库（STL）中，std::vector 的 .begin() 成员函数返回一个指向容器第一个元素的迭代器。该迭代器可用于遍历整个容器元素。若容器为空，.begin() 和 .end() 返回的迭代器会相等。
 
+**一些常用api**
+> 1、v.front() / v.back()：直接访问首尾元素。
+> 2、v[0] / v[v.size()-1]：下标访问，不做越界检查。
+> 3、v.at(0) / v.at(v.size()-1)：带越界检查，越界时会抛出 std::out_of_range。 ‌
 ---
 
 ### 2. std::map
@@ -278,6 +286,112 @@ int safe = dq.at(3);           // 带边界检查访问
 size_t count = dq.size();      // 元素数量
 bool isEmpty = dq.empty();     // 是否为空
 ```
+### 优先队列
+>1、定义：优先队列是一种特殊的队列，出队顺序不再是“先进先出”，而是按“优先级”进行——每次出队的都是当前队列中“优先级最高”（或最低）的元素。
+> 2、在 C++ STL 中，std::priority_queue 默认实现成最大堆，即 top() 返回容器中最大的元素。
+> 3、模板如下：
+T：存储元素的类型
+Container：底层容器类型，需要支持随机访问迭代器（默认 std::vector<T>）
+Compare：比较谓词，默认用 std::less，形成最大堆；若想最小堆，可用 std::greater 或自定义
+```cpp
+template<
+    class T,
+    class Container = std::vector<T>,
+    class Compare = std::less<typename Container::value_type>
+>
+class priority_queue;
+```
+**常用方法**
+| 方法                                  | 功能            | 复杂度      |
+| ----------------------------------- | ------------- | -------- |
+| `empty()`                           | 判断是否为空        | O(1)     |
+| `size()`                            | 返回元素个数        | O(1)     |
+| `top()`                             | 访问当前“最高优先级”元素 | O(1)     |
+| `push(const T& x)` / `emplace(...)` | 插入新元素         | O(log n) |
+| `pop()`                             | 弹出当前“最高优先级”元素 | O(log n) |
+| `swap(other)`                       | 与另一个优先队列交换    | 平摊 O(1)  |
+
+
+**构建最大堆**
+```cpp
+#include <queue>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::priority_queue<int> pq;
+    pq.push(3);
+    pq.push(1);
+    pq.push(4);
+    std::cout << pq.top(); // 输出 4
+}
+```
+**仿函数构建最小堆**
+```cpp
+// 仿函数
+struct MyCmp {
+    bool operator()(int a, int b) const {
+        return a > b; // 小的“优先”→最小堆
+    }
+};
+std::priority_queue<int, std::vector<int>, MyCmp> pq1;
+
+// Lambda + decltype
+auto cmp = [](int a, int b){ return a > b; };
+std::priority_queue<int, std::vector<int>, decltype(cmp)> pq2(cmp);
+
+// 函数指针
+bool fncmp(int a, int b){ return a > b; }
+std::priority_queue<int, std::vector<int>, bool(*)(int,int)> pq3(fncmp);
+```
+>**堆元素删除---延迟删除法**
+> 当你需要“删除指定值”但不想重建整个堆时，可以配合一个 unordered_map<int,int> 来标记要删除的元素，真正遇到时再 pop 掉
+```cpp
+void clean() {
+        while (!pq.empty()) {
+            auto it = to_remove.find(pq.top());
+            if (it != to_remove.end()) {
+                pq.pop();
+                if (--it->second == 0) to_remove.erase(it);
+            } else {
+                break;
+            }
+        }
+    }
+```
+**利用pair进行延迟消除**
+```cpp
+	//239 滑动窗口最大值
+	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+		priority_queue<pair<int, int>> slideQueue;
+		vector<int> resVec;
+		if (nums.size() < k)
+			return resVec;
+
+		//构建堆
+		for (int i = 0; i < k; i++)
+		{
+			pair<int, int> t(nums[i],i);
+			slideQueue.push(t);
+		}
+		resVec.push_back(slideQueue.top().first);
+
+		//生成最大值
+		for (int i = k ; i < nums.size(); i++)
+		{
+			pair<int, int> t(nums[i], i);
+			slideQueue.push(t);
+			
+			while (slideQueue.top().second <= i - k)
+			{
+				slideQueue.pop();
+			}
+			resVec.push_back(slideQueue.top().first);
+		}
+
+		return resVec;
+	}
+```
 
 #### 其他常用 API
 ```cpp
@@ -297,6 +411,8 @@ dq.swap(other);                // 与 another 交换内容
 auto it_begin = dq.begin();    // 双向迭代器
 for (int x : dq) std::cout << x << ' ';
 ```
+
+
 
 ### 6 各个容器的遍历
 ```cpp
@@ -694,4 +810,152 @@ int main() {
               << "（遇到第一个 '\\0' 就停止）" << std::endl;
     return 0;
 }
+```
+### 10 仿函数 vs 函数指针 vs 匿名函数
+>
+| 比较项     | 仿函数                   | 匿名函数（Lambda）                   |
+| ------- | --------------------- | ------------------------------ |
+| 定义方式    | 定义类并重载 `operator()`   | 使用 `[](){}` 的语法                |
+| 是否命名    | ✅ 需要命名类               | ✅ 可赋给变量，但本体匿名                  |
+| 写法简洁性   | ❌ 繁琐（需要 struct/class） | ✅ 简洁、内联                        |
+| 可否捕获状态  | ✅ 通过构造函数              | ✅ 通过 `[=]`, `[&]`, `[x]` 等捕获机制 |
+| 类型名称    | 有名字（类名）               | 无类型名，使用 `auto` 推导              |
+| 可否嵌套    | ❌ 不易嵌套                | ✅ 可以直接嵌套                       |
+| 推荐场景    | 可重用、有多个函数逻辑的复杂对象      | 简洁临时函数、STL 参数等                 |
+| C++支持版本 | C++98 起               | C++11 起                        |
+
+>
+| 项目      | 仿函数（Functor）                 | 函数指针（Function Pointer） |
+| ------- | ---------------------------- | ---------------------- |
+| 本质      | 是一个**类的对象**，重载了 `operator()` | 是一个指向函数的变量             |
+| 是否可携带状态 | ✅ 可以有成员变量，保存状态               | ❌ 不能保存状态（仅指向函数地址）      |
+| 性能优化    | ✅ 编译器能内联优化                   | ❌ 难以内联优化               |
+| 灵活性     | ✅ 可封装任意复杂行为                  | ❌ 限于函数已有逻辑             |
+| 现代用途    | STL 容器操作、算法传参                | C 风格 API，或者需要简单函数回调的场景 |
+> **仿函数 一些示例**
+> **实例 1：用于排序的仿函数**
+``` cpp
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+struct DescendCompare {
+    bool operator()(int a, int b) const {
+        return a > b; // 降序排列
+    }
+};
+
+int main() {
+    std::vector<int> v = {3, 1, 4, 2};
+    std::sort(v.begin(), v.end(), DescendCompare()); // 使用仿函数排序
+
+    for (int x : v) std::cout << x << " "; // 输出：4 3 2 1
+}
+```
+**实例 2：自定义优先队列比较器（最小堆**
+```cpp
+#include <queue>
+#include <vector>
+#include <iostream>
+
+struct MinHeap {
+    bool operator()(int a, int b) const {
+        return a > b; // 构造最小堆
+    }
+};
+
+int main() {
+    std::priority_queue<int, std::vector<int>, MinHeap> pq;
+    pq.push(3); pq.push(1); pq.push(5);
+
+    while (!pq.empty()) {
+        std::cout << pq.top() << " ";
+        pq.pop();
+    }
+    // 输出：1 3 5
+}
+
+```
+**实例 3：自定义优先队列比较器（最小堆）匿名函数**
+>不能直接写 cmp，因为模板需要类型名，你只能用 decltype(cmp) 来拿到它的类型，或者改用 std::function。
+```cpp
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <functional>
+int main() {
+    // 用 lambda 表达式定义最小堆比较器（小的优先）
+    auto cmp = [](int a, int b) {
+        return a > b; // "大"的在前 => 小根堆
+    };
+
+    // priority_queue 使用 vector 容器 + 比较器（注意第三个参数）
+    std::priority_queue<int, std::vector<int>, decltype(cmp)> minHeap(cmp);
+
+    // 插入元素
+    minHeap.push(5);
+    minHeap.push(1);
+    minHeap.push(10);
+    minHeap.push(3);
+
+    // 输出元素（从小到大）
+    while (!minHeap.empty()) {
+        std::cout << minHeap.top() << " ";
+        minHeap.pop();
+    }
+    // 输出：1 3 5 10
+
+    return 0;
+}
+
+```
+**std::function构建最小堆**
+```cpp
+auto minHeap = std::priority_queue<
+    int,
+    std::vector<int>,
+    std::function<bool(int, int)>
+>(
+    [](int a, int b) { return a > b; }  // 最小堆比较器
+);
+```
+
+**std::function和仿函数**
+| 特性       | 仿函数（functor）           | `std::function`     |
+| -------- | ---------------------- | ------------------- |
+| 类型       | 自定义类型                  | 模板类                 |
+| 灵活性      | 高，可保存状态、模板化            | 更高，可存储任意可调用对象       |
+| 使用场景     | STL 比较器、自定义策略、性能要求高的场合 | 回调、泛型接口、动态函数绑定等     |
+| 是否支持类型擦除 | ❌ 不支持                  | ✅ 支持                |
+| 性能       | ✅ 通常更快，尤其是 inline 场景   | ❌ 稍慢，有额外开销（内存、间接调用） |
+| 可否捕获状态   | ✅ 可（类成员）               | ✅ 可（闭包也支持）          |
+| 用法复杂度    | 中（要写结构体或类）             | 简（直接赋 lambda 或函数）   |
+
+>s td::function 是一个 通用的函数封装器，可以存储：
+普通函数、函数指针、Lambda 表达式、仿函数对象
+```cpp
+#include <functional>
+#include <iostream>
+
+bool compare(int a, int b) {
+    return a > b;
+}
+
+int main() {
+    std::function<bool(int, int)> f = compare;         // 普通函数
+    std::function<bool(int, int)> g = [](int a, int b) { return a > b; }; // lambda
+
+    std::cout << f(3, 2) << "\n";  // 输出 1
+    std::cout << g(3, 2) << "\n";  // 输出 1
+}
+```
+### 11 一些其余知识
+> std::pair<int,int> 类似于一个struct，里面都是int类型
+```cpp
+template< class T1, class T2 >
+struct pair {
+    T1 first;
+    T2 second;
+    // 构造函数、赋值操作符、比较运算符等
+};
 ```
