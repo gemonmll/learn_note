@@ -80,3 +80,106 @@
 > ![Alt text](image-39.png)
 > 模型训练，模型使用
 > ![Alt text](image-40.png)
+> ### 4 大模型差异
+> 预训练数据规模
+> ![Alt text](image-41.png)
+> 训练架构差异
+> （encoder-decoder）\(causal decoder)\(prefic decode)
+> ![Alt text](image-42.png)
+> ![Alt text](image-43.png)
+> TOKENizer 差异
+> bype-pair (BPE)、wordpiece、sentencepiece
+> ![Alt text](image-44.png)
+> 训练目标差异
+> ![Alt text](image-45.png)
+> 位置编码差异
+> ![Alt text](image-46.png)
+> 正则化位置差异
+> ![Alt text](image-47.png)
+> ![Alt text](image-48.png)
+> 激活函数差异
+> ![Alt text](image-49.png)
+> 注意力机制差异
+> ![Alt text](image-50.png)
+> ![Alt text](image-51.png)
+> ### 5 主流大模型-结构
+> llama 结构
+> ![Alt text](image-52.png)
+> glm 结构
+> ![Alt text](image-53.png)
+> bloom 结构
+> ![Alt text](image-54.png)
+> 主流模型对比-tokenizer (llama token对于中文支持不好，容易乱码，而且非常慢)
+> 想要修改的话需要改此表和微调
+> ![Alt text](image-55.png)
+> ![Alt text](image-56.png)
+> 综合对比
+> ![Alt text](image-57.png)
+## 6 大模型评估
+> 评估的对象 （基础模型 sft模型）
+> ![Alt text](image-58.png)
+> 基于GPT自动化评分 （打分、投票）
+> ![Alt text](image-59.png)
+> ![Alt text](image-60.png)
+> 案例- LLMZoo自动化评测
+> ![Alt text](image-61.png)
+> ![Alt text](image-62.png)
+> 基于特定任务评估-GLUE\CEVAL
+> ![Alt text](image-63.png)
+> ![Alt text](image-64.png)
+> MT-Bench多轮评测
+> ![Alt text](image-65.png)
+> longBench长文本评测
+> ![Alt text](image-66.png)
+> CEVAL/CMMLU等知识评测
+> ![Alt text](image-67.png)
+> CMB-中文医疗领域评测
+> ![Alt text](image-68.png)
+> FinEval中文金融领域评测
+> ![Alt text](image-69.png)
+> 大模型评测汇总（https://github.com/MLGroupJLU/LLM-eval-survey）
+> ![Alt text](image-70.png)
+> ## **领域微调模型落地范式**
+> 落地范式
+> ![Alt text](image-71.png)
+> ![Alt text](image-72.png)
+> 具体例子
+> 选择基座->买卡->数据->clean
+> peet(lora)微调-》形成cama
+> ![Alt text](image-73.png)
+> 大模型推理，显存预估 （训练阶段，推理阶段）
+> ![Alt text](image-74.png)
+> 微调加速 - freeze
+> ![Alt text](image-75.png)
+> 微调加速 - LORA
+> ![Alt text](image-76.png)
+> 医学微调大模型
+> ![Alt text](image-77.png)
+> 大模型构造（多模态）
+> ![Alt text](image-78.png)
+> ![Alt text](image-79.png)
+> ![Alt text](image-80.png)
+> ## 7 赋能传统NLP
+> 大模型应用前提认知
+> 大模型封装成黑盒，之后做二次开发，
+> ![Alt text](image-81.png)
+> 大模型用于文档问答
+> ![Alt text](image-82.png)
+> ![Alt text](image-83.png)
+> 表格问答
+> ![Alt text](image-84.png)
+> 问答范式
+> ![Alt text](image-85.png)
+> 文档智能范式
+> ![Alt text](image-86.png)
+> 大模型用于数据标注123
+> ![Alt text](image-87.png)
+> 知识图谱构建
+> ![Alt text](image-88.png)
+> ![Alt text](image-89.png)
+> ![Alt text](image-90.png)
+> ![Alt text](image-91.png)
+> ![Alt text](image-92.png)
+> ![Alt text](image-93.png)
+> 数据库问答
+> ![Alt text](image-94.png)
