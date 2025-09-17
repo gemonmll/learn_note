@@ -121,3 +121,118 @@
 > **文本生成时的qkv**
 > query\key\value
 > ![Alt text](image-55.png)
+> ![Alt text](image-56.png)
+> ![Alt text](image-57.png)
+> 注意力机制示例
+> ![Alt text](image-58.png)
+> **LLM的开发过程**
+> 四个关键阶段：预训练、有监督微调、奖励建模、强化学习
+> ![Alt text](image-59.png)
+> 预训练 pretraining 基座模型
+> ![Alt text](image-60.png)
+> 有监督微调 sft
+> 使用标准好的数据集，目的让模型更加精准地理解和执行特定任务、用户提问和期望的答案
+> ![Alt text](image-61.png)
+> 奖励建模
+> 比较不同输出的优劣为他们排序
+> ![Alt text](image-62.png)
+> 强化学习（带有人类反馈）
+> 利用上一阶段的RM模型评估SFT模型输出，并据此调整SFT模型的参数，以生成更高质量的文本
+> ![Alt text](image-63.png)
+> **LLM模型构建不同阶段的划分（其他模式）**
+> ![Alt text](image-64.png)
+> ![Alt text](image-65.png)
+> **从语言模型到聊天智能：基座模型到对话模型的转变**
+> sft的目标是生成连贯、自然且上下文相关的对话回复
+> ![Alt text](image-66.png)
+> 第一步：预训练LLM基础模型
+> 自监督学习，大量无标签预测下一个词或恢复被掩盖的词
+> ![Alt text](image-67.png)
+> ![Alt text](image-68.png)
+> 第二步：使用sft进行任务适应
+> 通常准备由人类对话组成的数据集，样本包括一个对话历史（上下文）和一个人类回复（目标）
+> 但回复可能存在一些问题（不够流畅，不够贴切）
+> ![Alt text](image-69.png)
+> 第三步：使用RLHF提高对话质量
+> 使用带有人类回复的反馈来学习和改进行为策略
+> ![Alt text](image-70.png)
+> 第四步：模型部署和持续优化
+> ![Alt text](image-71.png)
+> **从哪个模型微调，基座模型还是对话模型**
+> 预训练模型微调优缺点
+> 优点：可塑性强 缺点：领域适应性差，对话连贯性不足
+> ![Alt text](image-72.png)
+> 聊天模型SFT微调
+> 优点：更好的领域适应性，缺点：对话偏见、知识覆盖不足
+> 选择：通用模型选择预训练sft,专业模型选择聊天模型微调
+> ![Alt text](image-73.png)
+> **LLM微调方法**
+> full-tuning、freeze-tuning、LoRA、QLoRA
+> 全量微调（full-tuning）
+> 对预训练模型全部调整，需要大量资源和成本
+> ![Alt text](image-74.png)
+> ![Alt text](image-75.png)
+> 冻结部分参数微调（freeze-tuning）
+> 只冻结部分参数，适应能力受到限制
+> ![Alt text](image-76.png)
+> LoRA低秩适应的参数高效微调
+> 在每个transformer层中引入一个低秩分解矩阵，并只训练这些新增的低秩矩阵，而保持原有的权重不变
+> 底摸+外挂的模式
+> 核心思想是通过少量的额外参数（低秩矩阵）来捕捉下游任务的特定模式，而不改变预训练权重。
+> 一些特定任务上可能达不到full-tuning的性能水平，以及低秩假设不一定总成立
+> ![Alt text](image-77.png)
+> ![Alt text](image-78.png)
+> QloRA：低秩适应的量化优化
+> 核心思想是应用LoRA进行模型调优前，先对预训练模型的基础模型进行量化
+> 减小体积、加速推理、参数高效
+> ![Alt text](image-79.png)
+> 小结,LLM训练的不同思路和方法
+> ![Alt text](image-80.png)
+> **LoRA微调**
+> 轻量级微调技术
+> LoRA 将模型权重矩阵分解为低秩矩阵并进行训练的微调技术
+> ![Alt text](image-81.png)
+> 数学原理
+> 讲该矩阵表示为两个低秩矩阵的乘积
+> r远远小于d,k
+> ![Alt text](image-82.png)
+> ![Alt text](image-83.png)
+> A矩阵高斯分布初始化，B初始化为0
+> ![Alt text](image-84.png)
+> lora通查插入在transformer架构的注意力模块和前馈网络中
+> ![Alt text](image-85.png)
+> 参数量对比
+> ![Alt text](image-86.png)
+> ![Alt text](image-87.png)
+> 缩放因子的使用
+> 增加或减少低秩权重对最终权重的贡献
+> 调整和应用策略
+> ![Alt text](image-88.png)
+> ![Alt text](image-89.png)
+> LoRA有效的依据
+> 大模型往往具有低内在维度，低秩也可以在该空间高效求解
+> ![Alt text](image-90.png)
+> ![Alt text](image-91.png)
+> 可以选择只对Q和V的线性映射进行微调
+> 减少复杂度，提高q,v的表示能力，避免过拟合
+> ![Alt text](image-92.png)
+> ![Alt text](image-93.png)
+> **QLoRA量化微调**
+> 量化微调技术
+> 一种结合了LoRA低秩微调和量化技术的创新方法
+> 采用四位精度对预训练模型权重进行量化，然后在量化模型上训练LoRA模块
+> 采用NF4数据格式、双重量化、分页优化器
+> ![Alt text](image-94.png)
+> ![Alt text](image-95.png)
+> ![Alt text](image-96.png)
+> QLoRA的工作流程
+> ![Alt text](image-97.png)
+> QLoRA的优势
+> 个人电脑微调LLM成为可能
+> ![Alt text](image-98.png)
+> ![Alt text](image-99.png)
+> 双重量化，进一步降低量化常数的内存占用
+> ![Alt text](image-100.png)
+> ![Alt text](image-101.png)
+> 分页优化器防止梯度校验导致内存峰值
+> ![Alt text](image-102.png)
