@@ -1,0 +1,3 @@
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/build/CMakeFiles/edit_cache.dir
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/build/CMakeFiles/rebuild_cache.dir
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/build/CMakeFiles/leetcode_runner.dir
