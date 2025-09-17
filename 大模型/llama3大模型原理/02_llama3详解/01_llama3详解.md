@@ -116,3 +116,52 @@
 > RoPE的优点
 > 引入相对位置信息，保持绝对位置信息，高效处理长序列
 > ![Alt text](image-51.png)
+> ![Alt text](image-54.png)
+> 优化策略
+> ![Alt text](image-52.png)
+> ![Alt text](image-53.png)
+> **分组查询注意力机制**
+> 传统的多头注意力机制计算效率较低
+> ![Alt text](image-55.png)
+> 传统方式
+> ![Alt text](image-56.png)
+> 多查询注意力机制，所有注意力头共享相同的键和值投影
+> ![Alt text](image-57.png)
+> GQA的原理 分组的形式共享键和值投影
+> ![Alt text](image-58.png)
+> GQA的优势
+> 计算效率和性能保持
+> ![Alt text](image-59.png)
+> **KVCache**
+> 一种用于自注意力机制键和值的优化策略
+> ![Alt text](image-60.png)
+> KVCache的必要性
+> 对于每个新的输入，模型会重新计算键和值，导致大量重复计算
+> ![Alt text](image-61.png)
+> KVCache的工作流程
+> 初始化缓存-计算当前输入的键和值-更新缓存-自注意力计算-清理缓存
+> ![Alt text](image-62.png)
+> ![Alt text](image-63.png)
+> 在LLama3中的应用
+> ![Alt text](image-64.png)
+> 总体流程梳理
+> 预填充和解码阶段
+> ![Alt text](image-65.png)
+> 预填充阶段：初始上下文输入，注意力计算，初始概率分布
+> 解码阶段：token生成、kvcache更新、循环迭代
+> 预填充阶段的kvcache
+> ![Alt text](image-66.png)
+> 大小示例
+> ![Alt text](image-67.png)
+> 解码阶段
+> 逐步生长长度
+> ![Alt text](image-68.png)
+> ![Alt text](image-69.png)
+> ![Alt text](image-71.png)
+> ![Alt text](image-72.png)
+> 总结
+> 解码阶段会随着长度增长
+> 将计算复杂度O(N2d)降低到接近线性关系
+> ![Alt text](image-73.png)
+> ![Alt text](image-74.png)
+> ![Alt text](image-75.png)
