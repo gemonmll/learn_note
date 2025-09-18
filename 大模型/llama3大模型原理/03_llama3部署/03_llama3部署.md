@@ -41,3 +41,10 @@
 > ![Alt text](image-20.png)
 > 支持的训练方法
 > ![Alt text](image-21.png)
+> **llama-factory 微调实战**
+> 配置过程
+> ![Alt text](image-22.png)
+> lora微调
+> 修改sft文件
+> ![Alt text](image-23.png)
+> ![Alt text](image-24.png)
