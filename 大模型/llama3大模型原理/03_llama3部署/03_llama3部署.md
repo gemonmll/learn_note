@@ -48,3 +48,10 @@
 > 修改sft文件
 > ![Alt text](image-23.png)
 > ![Alt text](image-24.png)
+> ![Alt text](image-25.png)
+> ![Alt text](image-26.png)
+> ![Alt text](image-27.png)
+> 修改数据集文件
+> ![Alt text](image-28.png)
+> ![Alt text](image-29.png)
+> ![Alt text](image-30.png)
