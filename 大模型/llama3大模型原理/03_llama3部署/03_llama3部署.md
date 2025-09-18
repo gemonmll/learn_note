@@ -55,3 +55,38 @@
 > ![Alt text](image-28.png)
 > ![Alt text](image-29.png)
 > ![Alt text](image-30.png)
+> **大模型推理**
+> 执行推理过程
+> ![Alt text](image-31.png)
+> ![Alt text](image-32.png)
+> **大模型评估**
+> MMLU 大规模的多任务语言理解基准测试
+> ![Alt text](image-33.png)
+> 修改eval yaml
+> ![Alt text](image-34.png)
+> ![Alt text](image-35.png)
+> CEVLA任务
+> ![Alt text](image-36.png)
+> **lora 合并**
+> 把sft文件和模型权重文件合并成为一个文件
+> ![Alt text](image-37.png)
+> 合并后的推理，就不需要加载sft模型了
+> ![Alt text](image-38.png)
+>
+> **llama3医疗问答大模型实战**
+> 数据集准备
+> ![Alt text](image-39.png)
+> ![Alt text](image-40.png)
+> 训练 
+> ![Alt text](image-41.png)
+> ![Alt text](image-42.png)
+> 大模型推理
+> ![Alt text](image-43.png)
+> ![Alt text](image-44.png)
+> **qlora微调**
+> qlora微调
+> ![Alt text](image-45.png)
+> ![Alt text](image-46.png)
+> ![Alt text](image-47.png)
+> ![Alt text](image-48.png)
+> ![Alt text](image-49.png)
