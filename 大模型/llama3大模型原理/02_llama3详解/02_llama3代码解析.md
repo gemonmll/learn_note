@@ -76,3 +76,40 @@
 > 类之间的关系
 > ![Alt text](image-116.png)
 > ![Alt text](image-117.png)
+> fairscale 优化和加速深度学习模型的训练过程
+> ![Alt text](image-118.png)
+> ![Alt text](image-119.png)
+> **Tokenizer文件解读**
+> tokenizer类用于将文本进行表计划和编解码
+> chatformat类使用tokenizr类编码不同角色和内容的消息
+> ![Alt text](image-120.png)
+> 正确使用分词器非常重要
+> ![Alt text](image-121.png)
+> ![Alt text](image-122.png)
+> 代码提供了一个强大的分词器和聊天格式化工具，将文本转为token序列，并将聊天对话格式转为模型能理解的
+> ![Alt text](image-123.png)
+> 分词器的作用，
+> 文本分词(BPE）、token到id的映射(词汇表)、特殊标记的处理（加入bos,eos）、编码解码、处理大型文本
+> ![Alt text](image-124.png)
+> llama3中使用的特殊标记
+> start_header_id、end_header_id、begin_of_text
+> 引入特性标记和提示格式为与模型进行结构化交互提供了强大的机制
+> ![Alt text](image-126.png)
+> ![Alt text](image-125.png)
+> special_tokens（meta定义）和tiktoken分词器（google开发）的词汇表之前有如下关系
+> 主要应用在chat模式中，text补全模型并没有明确使用这些特殊标记
+> ![Alt text](image-127.png)
+> ![Alt text](image-128.png)
+> ![Alt text](image-129.png)
+> 特殊标记的添加方法
+> system prompt\user\assistant
+> ![Alt text](image-130.png)
+> Message和Dialog的关系：
+> Dialog是有多个Message组成的完整对话序列
+> ![Alt text](image-131.png)
+> 举例说明分词器处理流程
+> 添加bos标记，添加userid
+> ![Alt text](image-132.png)
+> ![Alt text](image-133.png)
+> ![Alt text](image-134.png)
+> ![Alt text](image-135.png)
