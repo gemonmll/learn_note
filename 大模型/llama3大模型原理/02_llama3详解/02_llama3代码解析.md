@@ -113,3 +113,25 @@
 > ![Alt text](image-133.png)
 > ![Alt text](image-134.png)
 > ![Alt text](image-135.png)
+> **RMSNorm文件**
+> 对每个时间步的隐藏状态向量进行归一化
+> 每个时间步的输入向量被独立归一化，适用于处理变长序列和保持时间步间的独立性
+> ![Alt text](image-136.png)
+> ![Alt text](image-137.png)
+> ![Alt text](image-138.png)
+> 计算公式如下：
+> ![Alt text](image-139.png)
+> ![Alt text](image-140.png)
+> ![Alt text](image-141.png)
+> **swiglu激活函数**
+> ![Alt text](image-142.png)
+> **GQA实现**
+> ![Alt text](image-143.png)
+> **RoPE实现**
+> ![Alt text](image-144.png)
+> **KVCache实现**
+> 初始化-》更新-》追加
+> ![Alt text](image-145.png)
+> ![Alt text](image-146.png)
+> 代码中实现KVCache的方式
+> ![Alt text](image-147.png)
