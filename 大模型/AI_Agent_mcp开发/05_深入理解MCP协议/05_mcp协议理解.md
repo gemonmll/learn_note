@@ -57,3 +57,12 @@
 > ![Alt text](image-26.png)
 > 总体架构
 > ![Alt text](image-27.png)
+> 1 创建mcp服务器
+> ![Alt text](image-28.png)
+> 2 启动mcp server
+> 服务监听
+> ![Alt text](image-29.png)
+> 3 开发mcp客户端
+> ![Alt text](image-30.png)
+> 4 启动智能体
+> ![Alt text](image-31.png)
