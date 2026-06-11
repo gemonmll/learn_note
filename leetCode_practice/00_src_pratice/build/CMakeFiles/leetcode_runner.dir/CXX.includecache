@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/solution.h
+vector
+-
+string
+-
+
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/solutions/0001_two_sum.cpp
+vector
+-
+unordered_map
+-
+solution.h
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/solutions/solution.h
+solution.h
+/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice/solutions/solution.h
+unordered_map
+-
+

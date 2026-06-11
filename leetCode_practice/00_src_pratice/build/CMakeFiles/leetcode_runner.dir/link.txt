@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -Wall -Wextra -pedantic   CMakeFiles/leetcode_runner.dir/main.cpp.o CMakeFiles/leetcode_runner.dir/solutions/0001_two_sum.cpp.o  -o leetcode_runner 

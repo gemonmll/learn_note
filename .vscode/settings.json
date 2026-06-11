@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/jzm/workspace/learn_note/leetCode_practice/00_src_pratice"
+}
